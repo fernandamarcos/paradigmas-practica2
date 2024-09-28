@@ -5,6 +5,7 @@
         //constant string as TypeOfVehicle wont change allong PoliceCar instances.
         private static string typeOfVehicle = "Taxi";
         private bool isCarryingPassengers;
+        private bool isLicensed;
 
         public Taxi(string plate) : base(typeOfVehicle, plate)
         {
@@ -39,6 +40,16 @@
             {
                 Console.WriteLine(WriteMessage("is not on a ride."));
             }
+        }
+
+        public void SetIsLicensed()
+        {
+            isLicensed = true;
+        }
+
+        public void RemoveLicense()
+        {
+            isLicensed = false;
         }
     }
 }
