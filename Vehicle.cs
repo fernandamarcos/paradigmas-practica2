@@ -3,7 +3,7 @@
     abstract class Vehicle : IMessageWritter
     {
         private string typeOfVehicle;
-        private string plate;
+        private string? plate;
         private float speed;
 
         public Vehicle(string typeOfVehicle, string plate)
@@ -24,11 +24,11 @@
             return typeOfVehicle;
         }
 
-        public string GetPlate()
+        public string? GetPlate()
         {
             return plate;
-        }
 
+        }
 
         public float GetSpeed()
         {
@@ -46,3 +46,4 @@
             return $"{this}: {message}";
         }
     }
+}

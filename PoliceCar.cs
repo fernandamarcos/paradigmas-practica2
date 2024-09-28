@@ -5,21 +5,21 @@
         //constant string as TypeOfVehicle wont change allong PoliceCar instances
         private const string typeOfVehicle = "Police Car"; 
         private bool isPatrolling;
-        private SpeedRadar speedRadar;
-        public PoliceStation policeStation {  get; set; }
-        public bool persecution;
-        public string infractorPlate;
+        private SpeedRadar? speedRadar;
+        private PoliceStation? policeStation;
+        private bool persecution;
+        private string? infractorPlate;
 
-        public PoliceCar(string plate) : base(typeOfVehicle, plate)
+        public PoliceCar(string plate, SpeedRadar? speedRadar) : base(typeOfVehicle, plate)
         {
             isPatrolling = false;
-            speedRadar = new SpeedRadar();
+            this.speedRadar = speedRadar;
             persecution = false;
         }
 
         public void UseRadar(Vehicle vehicle)
         {
-            if (isPatrolling)
+            if (isPatrolling && speedRadar!= null)
             {
                 speedRadar.TriggerRadar(vehicle);
                 string meassurement = speedRadar.GetLastReading();
@@ -66,11 +66,20 @@
 
         public void PrintRadarHistory()
         {
-            Console.WriteLine(WriteMessage("Report radar speed history:"));
-            foreach (float speed in speedRadar.SpeedHistory)
+            if (speedRadar!= null)
             {
-                Console.WriteLine(speed);
+                Console.WriteLine(WriteMessage("Report radar speed history:"));
+                foreach (float speed in speedRadar.SpeedHistory)
+                {
+                    Console.WriteLine(speed);
+                }
+
             }
+            else
+            {
+                Console.WriteLine(WriteMessage($"has no active radar."));
+            }
+            
         }
 
         public void StartPersecution(string infractorPlate)
@@ -87,9 +96,13 @@
 
         public void ActivateAlarm(string infractorPlate)
         {
-            policeStation.alarm = true;
-            this.infractorPlate = infractorPlate;
-            policeStation.SendAlarm(infractorPlate, this);
+            if (policeStation != null)
+            {
+                policeStation.alarm = true;
+                this.infractorPlate = infractorPlate;
+                policeStation.SendAlarm(infractorPlate, this);
+            }
+            
         }
     }
 }
