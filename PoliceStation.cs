@@ -27,6 +27,11 @@ namespace Practice1
             
         }
 
+        public void ActivateAlarm()
+        {
+            alarm = true;
+        }
+
         public void SendAlarm(string infractorPlate, PoliceCar policeWhoDetected)
         {
             foreach (var car in PoliceCarList) 
@@ -39,9 +44,6 @@ namespace Practice1
             }
         }
 
-        
-
-
-
+       
     }
 }

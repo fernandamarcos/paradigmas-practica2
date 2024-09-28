@@ -25,7 +25,7 @@
                 string meassurement = speedRadar.GetLastReading();
                 Console.WriteLine(WriteMessage($"Triggered radar. Result: {meassurement}"));
                 persecution=true;
-                ActivateAlarm(vehicle.GetPlate());
+                ActivateStationAlarm(vehicle.GetPlate());
             }
             else
             {
@@ -94,11 +94,11 @@
             this.policeStation = policeStation;
         }
 
-        public void ActivateAlarm(string infractorPlate)
+        public void ActivateStationAlarm(string infractorPlate)
         {
             if (policeStation != null)
             {
-                policeStation.alarm = true;
+                policeStation.ActivateAlarm();
                 this.infractorPlate = infractorPlate;
                 policeStation.SendAlarm(infractorPlate, this);
             }
