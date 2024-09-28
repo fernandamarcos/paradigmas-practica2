@@ -9,9 +9,9 @@ namespace Practice1
 {
     class PoliceStation : IMessageWritter
     {
-        public int stationNumber;   
+        private int stationNumber;   
         private List<PoliceCar> PoliceCarList {  get; set; }
-        public bool alarm; 
+        private bool alarm; 
         private City city;
 
         public PoliceStation(int stationNumber, City city) 
@@ -53,6 +53,11 @@ namespace Practice1
         public int GetStationNumber()
         {
             return stationNumber;
+        }
+        
+        public List<PoliceCar> GetPoliceCars()
+        {
+            return PoliceCarList;
         }
 
         public override string ToString()
