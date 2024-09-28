@@ -10,22 +10,22 @@
         private bool persecution;
         private string? infractorPlate;
 
-        public PoliceCar(string plate, SpeedRadar? speedRadar) : base(typeOfVehicle, plate)
+        public PoliceCar(string plate, SpeedRadar? speedRadar = null) : base(typeOfVehicle, plate)
         {
             isPatrolling = false;
             this.speedRadar = speedRadar;
             persecution = false;
         }
 
-        public void UseRadar(Vehicle vehicle)
+        public void UseRadar(Taxi taxi)
         {
             if (isPatrolling && speedRadar!= null)
             {
-                speedRadar.TriggerRadar(vehicle);
+                speedRadar.TriggerRadar(taxi);
                 string meassurement = speedRadar.GetLastReading();
                 Console.WriteLine(WriteMessage($"Triggered radar. Result: {meassurement}"));
-                persecution=true;
-                ActivateStationAlarm(vehicle.GetPlate());
+                persecution = true;
+                ActivateStationAlarm(taxi);
             }
             else
             {
@@ -94,13 +94,13 @@
             this.policeStation = policeStation;
         }
 
-        public void ActivateStationAlarm(string infractorPlate)
+        public void ActivateStationAlarm(Taxi infractor)
         {
             if (policeStation != null)
             {
                 policeStation.ActivateAlarm();
-                this.infractorPlate = infractorPlate;
-                policeStation.SendAlarm(infractorPlate, this);
+                infractorPlate = infractor.GetPlate();
+                policeStation.SendAlarm(infractor, this);
             }
             
         }
