@@ -35,7 +35,7 @@ namespace Practice1
             alarm = true;
         }
 
-        public void SendAlarm(Taxi infractor, PoliceCar policeWhoDetected)
+        public void SendAlarm(Vehicle infractor, PoliceCar policeWhoDetected)
         {
             Console.WriteLine(WriteMessage($"alarm activated by {policeWhoDetected.ToString()}. Infractor information: {infractor.ToString()}"));
             foreach (var car in PoliceCarList) 
@@ -46,7 +46,6 @@ namespace Practice1
                 }
                 
             }
-            city.RemoveTaxiLicense(infractor);
 
         }
 

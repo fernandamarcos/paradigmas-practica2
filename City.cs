@@ -30,7 +30,7 @@ namespace Practice1
         public void RemovePoliceStation(PoliceStation policeStation)
         {
             StationsList.Remove(policeStation);
-            Console.WriteLine(WriteMessage($"{policeStation.WriteMessage("removed station.")}"));
+            Console.WriteLine(WriteMessage($"{policeStation.WriteMessage("removed    station.")}"));
         }
 
         public void RegisterTaxiLicense(Taxi taxi)

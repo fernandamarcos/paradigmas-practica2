@@ -17,15 +17,15 @@
             persecution = false;
         }
 
-        public void UseRadar(Taxi taxi)
+        public void UseRadar(Vehicle vehicle)
         {
             if (isPatrolling && speedRadar!= null)
             {
-                speedRadar.TriggerRadar(taxi);
+                speedRadar.TriggerRadar(vehicle);
                 string meassurement = speedRadar.GetLastReading();
                 Console.WriteLine(WriteMessage($"Triggered radar. Result: {meassurement}"));
                 persecution = true;
-                ActivateStationAlarm(taxi);
+                ActivateStationAlarm(vehicle);
             }
             else
             {
@@ -94,7 +94,7 @@
             this.policeStation = policeStation;
         }
 
-        public void ActivateStationAlarm(Taxi infractor)
+        public void ActivateStationAlarm(Vehicle infractor)
         {
             if (policeStation != null)
             {

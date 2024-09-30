@@ -34,7 +34,7 @@
             return typeOfVehicle;
         }
 
-        public string GetPlate()
+        public string? GetPlate()
         {
             return plate;
 
