@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Practice1
 {
-    class Scooter : Vehicle
+    class Scooter : UnregisteredVehicle
     {
         private static string typeOfVehicle = "Scooter";
-        private float speed;
-        public Scooter() : base (typeOfVehicle, null)
+        public Scooter() : base(typeOfVehicle)
         {
-            speed = 20f;
+            SetSpeed(20.0f);
         }
 
     }
+
 }

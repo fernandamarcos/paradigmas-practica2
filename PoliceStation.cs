@@ -35,7 +35,7 @@ namespace Practice1
             alarm = true;
         }
 
-        public void SendAlarm(Vehicle infractor, PoliceCar policeWhoDetected)
+        public void SendAlarm(RegisteredVehicle infractor, PoliceCar policeWhoDetected)
         {
             Console.WriteLine(WriteMessage($"alarm activated by {policeWhoDetected.ToString()}. Infractor information: {infractor.ToString()}"));
             foreach (var car in PoliceCarList) 

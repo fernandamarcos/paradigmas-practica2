@@ -1,6 +1,6 @@
 ﻿namespace Practice1
 {
-    class PoliceCar : Vehicle
+    class PoliceCar : RegisteredVehicle
     {
         //constant string as TypeOfVehicle wont change allong PoliceCar instances
         private const string typeOfVehicle = "Police Car"; 
@@ -17,15 +17,19 @@
             persecution = false;
         }
 
-        public void UseRadar(Vehicle vehicle)
+        public void UseRadar(RegisteredVehicle vehicle)
         {
             if (isPatrolling && speedRadar!= null)
             {
                 speedRadar.TriggerRadar(vehicle);
                 string meassurement = speedRadar.GetLastReading();
                 Console.WriteLine(WriteMessage($"Triggered radar. Result: {meassurement}"));
-                persecution = true;
-                ActivateStationAlarm(vehicle);
+                if (speedRadar.GetSpeedHistory().Last() > speedRadar.GetLegalSpeed())
+                {
+                    persecution = true;
+                    ActivateStationAlarm(vehicle);
+                }
+                    
             }
             else
             {
@@ -94,7 +98,7 @@
             this.policeStation = policeStation;
         }
 
-        public void ActivateStationAlarm(Vehicle infractor)
+        public void ActivateStationAlarm(RegisteredVehicle infractor)
         {
             if (policeStation != null)
             {

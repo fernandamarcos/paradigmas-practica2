@@ -34,7 +34,8 @@
             policeCar1.StartPatrolling();
             policeCar1.UseRadar(taxi2);
 
-            city.RemoveTaxiLicense(taxi2);
+            city.RegisterTaxiLicense(taxi2);
+
         }
     }
 }
